@@ -14,13 +14,11 @@ const displayCards = (object) => {
     )
 };
 
-
-
 pokemonArray.forEach(pokemon => {
     container.innerHTML += displayCards(pokemon)
 });
 
-// EXTENTION
+// EXTENSION
 
 const h1 = document.querySelector("h1")
 h1.remove()
@@ -62,9 +60,15 @@ const searchByType = (event) => {
         for (let i = 0; i < pokemon.types.length; i++) {
             if (pokemon.types[i].includes(event.target.value.toLowerCase())) {
                 container.innerHTML += displayCards(pokemon)
-            }    
+            }
         }
     });
+    if (event.target.value === "") {
+        container.innerHTML = "";
+        pokemonArray.forEach(pokemon => {
+            container.innerHTML += displayCards(pokemon)
+        });
+    }
 };
 
 pokemonType.addEventListener("input", searchByType)
